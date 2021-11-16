@@ -12,18 +12,19 @@
     $today = date("d");
 
     // Check if it is valid
-    if ($day == 'today' || $day <= $today || $day == '') {
+    if ($day == 'today' || ($day <= $today && $day > 0) || $day == '') {
         // Requested beer is allowed. Display the beer
         if ($day == 'today' || $day == '') {
             $day = $today;
         }
         $beer = $beers[$day - 1];
-        if ($beer < 10) {
-            echo '0';
-        }
-        echo $beer;
+        
+        $data = array('beer' => $beer);
+
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode($data);
     } else {
-        // Wrong beer requested
+        // Beer requested for the future, we don't allow that
         http_response_code(404);
     }
 ?>
