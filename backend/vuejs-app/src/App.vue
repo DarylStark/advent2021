@@ -11,9 +11,9 @@
         >Laat met het bier van de dag zien!</Button
       >
     </Card>
-    <Card center>
+    <Card center v-if="beer_loaded">
       <p><b>Cheers!</b></p>
-      <Button style="background-color: #ffc000"
+      <Button style="background-color: #ffc000" v-on:click="open_untappd()"
         >Check je bier in op Untappd</Button
       >
     </Card>
@@ -38,12 +38,16 @@
 <script>
 import Card from "./components/Card.vue";
 import Button from "./components/Button.vue";
+import axios from "axios";
 
 export default {
   name: "App",
   data: function () {
     return {
       loading: false,
+      beer_loaded: false,
+      beer: undefined,
+      link: undefined,
     };
   },
   components: {
@@ -51,10 +55,41 @@ export default {
     Button,
   },
   methods: {
+    open_untappd: function () {
+      if (this.link) {
+        window.open(this.link, "_blank").focus();
+      }
+    },
     get_beer: function (beer = null) {
-      // TODO: IMPLEMENT
       this.loading = true;
-      console.log("Requesting beer: " + beer);
+
+      // Local this
+      let vt = this;
+
+      axios
+        .get("http://dstark.nl/advent2021/get.php", {
+          params: {
+            day: beer,
+          },
+        })
+        .then(function (res) {
+          // TODO: Set beer details
+          vt.beer = res.data.beer;
+          vt.link = res.data.link;
+
+          // TODO: Make sure the correct light lights up
+          console.log(vt.beer);
+
+          // Set 'loaded' to true
+          vt.beer_loaded = true;
+        })
+        .catch(function () {
+          alert("Er ging iets fout!!");
+        })
+        .then(function () {
+          // Done!
+          vt.loading = false;
+        });
     },
   },
   computed: {
@@ -64,7 +99,6 @@ export default {
       let diff = Math.floor(
         (start_date.getTime() - date.getTime()) / (1000 * 3600 * 24)
       );
-      console.log(diff);
       return diff;
     },
     monthday: function () {

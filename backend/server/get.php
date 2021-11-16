@@ -1,10 +1,37 @@
 <?php
     // Array with days and their correct calendar numbers
     $beers = array(
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-        11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-        21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
-        31
+        array(1, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(2, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(3, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(4, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(5, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(6, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(7, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(8, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(9, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(10, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(11, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(12, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(13, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(14, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(15, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(16, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(17, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(18, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(19, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(20, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(21, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(22, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(23, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(24, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(25, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(26, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(27, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(28, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(29, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(30, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487'),
+        array(31, 'https://untappd.com/b/st-servattumus-speltbier-weizen/2238487')
     );
 
     // Get the requested day
@@ -19,8 +46,12 @@
         }
         $beer = $beers[$day - 1];
         
-        $data = array('beer' => $beer);
+        $data = array(
+            'beer' => $beer[0],
+            'link' => $beer[1]
+        );
 
+        header("Access-Control-Allow-Origin: *");
         header('Content-Type: application/json; charset=utf-8');
         echo json_encode($data);
     } else {
