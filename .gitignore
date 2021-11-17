@@ -1,1 +1,3 @@
-backend/vuejs-app/node_modules/*
+backend/vuejs-app/node_modules
+backend/vuejs-app/dist
+build/
