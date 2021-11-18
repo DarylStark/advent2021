@@ -91,6 +91,7 @@
                 "/home/dast/.arduino15/packages/esp32/hardware/esp32/1.0.4/libraries/WiFi/src",
                 "/home/dast/.arduino15/packages/esp32/hardware/esp32/1.0.4/libraries/WebServer/src",
                 "/home/dast/.arduino15/packages/esp32/hardware/esp32/1.0.4/libraries/Preferences/src",
+                "/home/dast/Arduino/libraries/Adafruit_NeoPixel",
                 "/home/dast/Arduino/libraries/pubsubclient/src",
                 "/home/dast/.arduino15/packages/esp32/hardware/esp32/1.0.4/libraries/FS/src",
                 "/home/dast/.arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf/include/c++/5.2.0",
