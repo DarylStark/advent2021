@@ -17,6 +17,18 @@
         >Check je bier in op Untappd</Button
       >
     </Card>
+    <Card center>
+      <p><b>Gezelligheid</b></p>
+      <Button style="margin-right: 10px" v-on:click="rest('white')">Wit</Button>
+      <Button style="margin-right: 10px" v-on:click="rest('red')">Rood</Button>
+      <Button style="margin-right: 10px" v-on:click="rest('green')"
+        >Groen</Button
+      >
+      <Button style="margin-right: 10px" v-on:click="rest('blue')"
+        >Blauw</Button
+      >
+      <Button v-on:click="rest('yellow')">Geel</Button>
+    </Card>
     <Card v-if="days_left < -1" center>
       <b>Vorige dagen</b>
       <div class="history">
@@ -60,6 +72,9 @@ export default {
         window.open(this.link, "_blank").focus();
       }
     },
+    rest: function (color) {
+      axios.get("/rest/" + color);
+    },
     get_beer: function (beer = null) {
       this.loading = true;
 
@@ -77,8 +92,8 @@ export default {
           vt.beer = res.data.beer;
           vt.link = res.data.link;
 
-          // TODO: Make sure the correct light lights up
-          console.log(vt.beer);
+          // Make sure the correct light lights up
+          axios.get("/led/" + (vt.beer - 1));
 
           // Set 'loaded' to true
           vt.beer_loaded = true;
