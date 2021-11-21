@@ -4,12 +4,9 @@
 class Application : diot::DIOT_WiFi
 {
 private:
-    
-
 public:
     Application()
-        :
-        DIOT_WiFi("Advent2021", 1, 0, 0, "Main", 7, INFO)
+        : DIOT_WiFi("Advent2021", 1, 0, 0, "Main", 7, INFO)
     {
     }
 
@@ -30,11 +27,8 @@ public:
     {
         if (_loop())
         {
-            Serial.println("Jingle bells, jingle bells, jingle all the wayyyy");
-            Serial.println("Ga bier drinken, Rens!!");
-            Serial.println("-----------------------------");
         }
-        delay(500);
+        delay(50);
     }
 };
 

@@ -19,6 +19,7 @@
     </Card>
     <Card center>
       <p><b>Gezelligheid</b></p>
+      <Button style="margin-right: 10px" v-on:click="rest('off')">Uit</Button>
       <Button style="margin-right: 10px" v-on:click="rest('white')">Wit</Button>
       <Button style="margin-right: 10px" v-on:click="rest('red')">Rood</Button>
       <Button style="margin-right: 10px" v-on:click="rest('green')"
@@ -37,7 +38,7 @@
         <div
           v-for="day in days"
           :key="day"
-          class="day"
+          class="day clickable"
           v-on:click="get_beer(day)"
         >
           {{ day }}
@@ -166,7 +167,7 @@ div.day {
   flex-grow: 0;
 }
 
-div.day:hover {
+div.day.clickable:hover {
   background-color: #2fbece;
   cursor: pointer;
 }
