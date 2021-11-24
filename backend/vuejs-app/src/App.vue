@@ -119,7 +119,7 @@ export default {
   computed: {
     days_left: function () {
       const date = new Date();
-      const start_date = new Date("11/01/2021");
+      const start_date = new Date("12/01/2021");
       let diff = Math.floor(
         (start_date.getTime() - date.getTime()) / (1000 * 3600 * 24)
       );
