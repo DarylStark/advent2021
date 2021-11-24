@@ -29,6 +29,11 @@
         >Blauw</Button
       >
       <Button v-on:click="rest('yellow')">Geel</Button>
+      <br />
+      <Button style="margin-right: 10px" v-on:click="dim('5')">5%</Button>
+      <Button style="margin-right: 10px" v-on:click="dim('10')">10%</Button>
+      <Button style="margin-right: 10px" v-on:click="dim('25')">25%</Button>
+      <Button style="margin-right: 10px" v-on:click="dim('50')">50%</Button>
     </Card>
     <Card v-if="days_left < -1" center>
       <b>Vorige dagen</b>
@@ -75,6 +80,9 @@ export default {
     },
     rest: function (color) {
       axios.get("/rest/" + color);
+    },
+    dim: function (dim) {
+      axios.get("/dim/" + dim);
     },
     get_beer: function (beer = null) {
       this.loading = true;
