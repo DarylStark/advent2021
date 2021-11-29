@@ -1,18 +1,31 @@
 <template>
   <div id="center">
     <Card v-if="days_left > 0" center>
-      Over {{ days_left }} dagen zal de december kalender beginnen
+      Over {{ days_left }} dag(en) zal de december kalender beginnen
     </Card>
     <Card v-if="days_left <= 0" center>
       <p>Het is vandaag</p>
       <p class="monthday">{{ monthday }}</p>
       <p>december</p>
       <Button v-on:click="get_beer()" v-bind:disabled="loading"
-        >Laat met het bier van de dag zien!</Button
+        >Laat me het bier van de dag zien!</Button
       >
     </Card>
     <Card center v-if="beer_loaded">
-      <p><b>Cheers!</b></p>
+      <p>
+        <b v-if='notes == ""'>Cheers!</b>
+        <b v-if='notes != ""'>{{ notes }}</b>
+        <br /><br />
+      </p>
+      <p>
+        Dit bier is een<br /><br />
+        <i>{{ style }}</i>
+        <span v-if='province != ""'>
+          <br /><br />
+          en komt uit de provincie<br /><br />
+          <i>{{ province }}</i>
+        </span>
+      </p>
       <Button style="background-color: #ffc000" v-on:click="open_untappd()"
         >Check je bier in op Untappd</Button
       >
@@ -66,6 +79,10 @@ export default {
       beer_loaded: false,
       beer: undefined,
       link: undefined,
+      province: '',
+      style: undefined,
+      country: '',
+      notes: ''
     };
   },
   components: {
@@ -100,6 +117,10 @@ export default {
           // TODO: Set beer details
           vt.beer = res.data.beer;
           vt.link = res.data.link;
+          vt.province = res.data.province;
+          vt.style = res.data.style;
+          vt.country = res.data.country;
+          vt.notes = res.data.notes;
 
           // Make sure the correct light lights up
           axios.get("/led/" + (vt.beer - 1));
@@ -119,7 +140,7 @@ export default {
   computed: {
     days_left: function () {
       const date = new Date();
-      const start_date = new Date("11/01/2021");
+      const start_date = new Date("12/01/2021");
       let diff = Math.floor(
         (start_date.getTime() - date.getTime()) / (1000 * 3600 * 24)
       );
